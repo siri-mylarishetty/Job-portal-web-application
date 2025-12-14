@@ -1,0 +1,68 @@
+{% extends "base.html" %}
+{% block title %}Home · Mini Job Portal{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center mb-4">
+  <div class="col-lg-10">
+    <div class="card card-shadow border-0">
+      <div class="card-body p-4 p-md-5">
+        <div class="row align-items-center">
+          <div class="col-md-7">
+            <h1 class="hero-title mb-3">Find your first job or hire fresh talent</h1>
+            <p class="text-muted mb-3">
+              Simple mini job portal built with Flask, MySQL and Bootstrap.
+              Applicants can register and apply; employers can post jobs and view applicants.<br>
+              <b style="color: rgb(36, 106, 236);">-Developed by SIRI VENNELA</b>
+            </p>
+            <a href="{{ url_for('jobs') }}" class="btn btn-primary me-2 mb-2">Browse Jobs</a>
+            <a href="{{ url_for('post_job') }}" class="btn btn-outline-secondary mb-2">Post a Job</a>
+          </div>
+          <div class="col-md-5 mt-4 mt-md-0 text-md-end text-center">
+            <h5 class="section-title">Quick Links</h5>
+            <div class="d-grid gap-2">
+              <a class="btn btn-outline-primary btn-sm" href="{{ url_for('register_applicant') }}">Register as Applicant</a>
+              <a class="btn btn-outline-primary btn-sm" href="{{ url_for('register_employer') }}">Register as Employer</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<h4 class="section-title">Latest Jobs</h4>
+<div class="row g-3">
+  {% for job in jobs %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card border-0 card-shadow h-100">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="{{ url_for('job_detail', job_id=job.id) }}" class="text-decoration-none">
+            {{ job.title }}
+          </a>
+        </h5>
+        <span class="badge badge-location mb-2">
+          {{ job.location or "Location not specified" }}
+        </span>
+        <p class="card-text text-muted small mb-1">
+          {{ job.employer.company_name }}
+        </p>
+        <p class="card-text text-muted small">
+          {{ job.description[:120] }}{% if job.description|length > 120 %}...{% endif %}
+        </p>
+        <p class="card-text">
+          <small class="text-muted">
+            Posted on {{ job.created_at.strftime('%Y-%m-%d') }}
+          </small>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12">
+    <div class="alert alert-info">No jobs posted yet. Be the first employer to post a job!</div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

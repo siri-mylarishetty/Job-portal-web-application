@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Register Employer{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="card card-shadow border-0">
+      <div class="card-body p-4">
+        <h3 class="text-center mb-4">Register Employer</h3>
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">Company Name</label>
+            <input name="company_name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contact Email</label>
+            <input name="contact_email" type="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Password (demo only)</label>
+            <input name="password" type="password" class="form-control" required>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Register Employer</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+

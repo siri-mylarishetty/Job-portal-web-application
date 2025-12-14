@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}All Jobs{% endblock %}
+{% block content %}
+
+<h3 class="section-title mb-3">All Jobs</h3>
+
+<div class="row g-3">
+  {% for job in jobs %}
+  <div class="col-md-6 col-lg-4">
+    <div class="card border-0 card-shadow h-100">
+      <div class="card-body">
+        <h5 class="card-title">
+          <a href="{{ url_for('job_detail', job_id=job.id) }}" class="text-decoration-none">
+            {{ job.title }}
+          </a>
+        </h5>
+        <span class="badge badge-location mb-2">
+          {{ job.location or "Location not specified" }}
+        </span>
+        <p class="card-text text-muted small mb-1">
+          {{ job.employer.company_name }}
+        </p>
+        <p class="card-text text-muted small">
+          {{ job.description[:140] }}{% if job.description|length > 140 %}...{% endif %}
+        </p>
+        <p class="card-text">
+          <small class="text-muted">Posted {{ job.created_at.strftime('%Y-%m-%d') }}</small>
+        </p>
+      </div>
+    </div>
+  </div>
+  {% else %}
+  <div class="col-12">
+    <div class="alert alert-info">No jobs available yet.</div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

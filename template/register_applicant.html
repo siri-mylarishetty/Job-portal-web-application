@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}Register Applicant{% endblock %}
+{% block content %}
+
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="card card-shadow border-0">
+      <div class="card-body p-4">
+        <h3 class="text-center mb-4">Register as Applicant</h3>
+        <form method="post">
+          <div class="mb-3">
+            <label class="form-label">Full Name</label>
+            <input name="full_name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input name="email" type="email" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Resume text (short)</label>
+            <textarea name="resume_text" class="form-control" rows="4"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100">Register</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+
